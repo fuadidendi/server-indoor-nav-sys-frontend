@@ -1,0 +1,141 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Container */
+  .login-container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(90deg, #fff 50%, #ff4b2b 50%);
+  }
+  
+  /* Left Side - Login Form */
+  .login-form {
+    width: 50%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .login-form h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  .social-icons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .social-icons a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: #f1f1f1;
+    border-radius: 50%;
+    color: #333;
+    font-size: 18px;
+    text-decoration: none;
+  }
+  
+  .form-group {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .btn-login {
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(90deg, #ff6a95, #ff4b2b);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .btn-login:hover {
+    background: linear-gradient(90deg, #ff4b2b, #ff6a95);
+  }
+  
+  .options {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  
+  .options a {
+    text-decoration: none;
+    color: #ff4b2b;
+  }
+  
+  /* Right Side - Welcome Section */
+  .login-welcome {
+    width: 50%;
+    padding: 40px;
+    background: linear-gradient(90deg, #ff4b2b, #ff6a95);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .login-welcome h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+  }
+  
+  .login-welcome p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .btn-signup {
+    padding: 10px 20px;
+    background: white;
+    color: #ff4b2b;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .btn-signup:hover {
+    background: #ffe3e3;
+  }
+  
+/* Footer Section */
+.login-footer {
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    font-size: 12px;
+    color: #777;
+  }
