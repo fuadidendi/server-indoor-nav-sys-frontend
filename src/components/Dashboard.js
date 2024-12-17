@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import mqtt from "mqtt";
 
 const Dashboard = ({ setIsAuthenticated }) => {
   const navigate = useNavigate();
@@ -43,9 +44,47 @@ const Dashboard = ({ setIsAuthenticated }) => {
 
   // Update object positions every second (1000ms)
   useEffect(() => {
-    const interval = setInterval(moveObjects, 1000); // Move objects every second
+    // MQTT broker URL (make sure to use WebSocket if you're using a web client)
+    const brokerUrl = "ws://192.168.160.173:1884"; // WebSocket port for Mosquitto
+    const client = mqtt.connect(brokerUrl);
+    
+    // Connect to MQTT broker
+    client.on("connect", () => {
+      console.log("Connected to MQTT broker");
 
-    return () => clearInterval(interval); // Cleanup on component unmount
+      // Subscribe to the topic where object location data is published
+      client.subscribe("person/locations", (err) => {
+        if (err) {
+          console.error("Failed to subscribe:", err);
+        } else {
+          console.log("Subscribed to person/locations");
+        }
+      });
+    });
+    
+    // Handle incoming messages
+    client.on("message", (topic, message) => {
+      if (topic === "person/locations") {
+        console.log("Message received: ", message.toString());  // Log the raw message
+        try {
+          const locations = JSON.parse(message.toString());
+          console.log("Parsed locations: ", locations);  // Log the parsed locations
+          setObjectLocations(locations);  // Update object locations
+        } catch (err) {
+          console.error("Error parsing message:", err);
+        }
+      }
+    });
+
+    client.on('error', (err) => {
+      console.error("Connection error:", err);
+    });
+
+    // Cleanup the MQTT client when the component unmounts
+    return () => {
+      client.end();
+    };
+
   }, []);
 
   return (
